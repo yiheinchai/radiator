@@ -94,7 +94,5 @@ export function getAllTransfers() {
 }
 
 export function getTransfersByAccountId(accountId) {
-  return transfers.filter(
-    (t) => t.fromAccountId === accountId || t.toAccountId === accountId
-  );
+  return transfers.filter((t) => t.fromAccountId === accountId || t.toAccountId === accountId);
 }
