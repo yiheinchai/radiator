@@ -1,0 +1,6 @@
+packages:
+  - "packages/*"
+  - "extensions/*"
+  - "apps/demo-bank/backend"
+  - "apps/demo-bank/frontend"
+  - "tests/integration"

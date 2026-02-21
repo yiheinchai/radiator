@@ -1,0 +1,33 @@
+{
+  "name": "@radiator/demo-backend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "dev:instrumented": "babel src --out-dir .instrumented --extensions '.ts' && echo '{\"type\":\"commonjs\"}' > .instrumented/package.json && node .instrumented/index.js",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "uuid": "^9.0.0",
+    "@radiator/client": "workspace:*",
+    "@radiator/common": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/express-serve-static-core": "^5.0.0",
+    "@types/cors": "^2.8.17",
+    "@types/uuid": "^9.0.7",
+    "@radiator/transform": "workspace:*",
+    "@babel/core": "^7.23.0",
+    "@babel/preset-env": "^7.23.0",
+    "@babel/preset-typescript": "^7.23.0",
+    "@babel/cli": "^7.23.0",
+    "@babel/register": "^7.22.15",
+    "typescript": "^5.3.0",
+    "@types/node": "^20.10.0",
+    "tsx": "^4.7.0"
+  }
+}

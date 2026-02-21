@@ -1,0 +1,113 @@
+{
+  "name": "@radiator/vscode",
+  "displayName": "Radiator",
+  "description": "Runtime type intelligence for TypeScript and JavaScript — see real types from production data",
+  "version": "0.1.0",
+  "publisher": "radiator",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:typescript",
+    "onLanguage:javascript",
+    "onLanguage:typescriptreact",
+    "onLanguage:javascriptreact"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "radiator.refreshErrors",
+        "title": "Radiator: Refresh Errors",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "radiator.openErrorSnapshot",
+        "title": "Radiator: Open Error Snapshot"
+      },
+      {
+        "command": "radiator.toggleMode",
+        "title": "Radiator: Toggle Mode (Normal/Error)"
+      },
+      {
+        "command": "radiator.viewErrorDetail",
+        "title": "Radiator: View Error Detail"
+      },
+      {
+        "command": "radiator.refreshSnapshots",
+        "title": "Radiator: Refresh Snapshots",
+        "icon": "$(refresh)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "radiator",
+          "title": "Radiator",
+          "icon": "media/radiator.svg"
+        }
+      ]
+    },
+    "views": {
+      "radiator": [
+        {
+          "id": "radiator-errors",
+          "name": "Error Log"
+        },
+        {
+          "id": "radiator-snapshot-detail",
+          "name": "Snapshot Inspector"
+        },
+        {
+          "id": "radiator-functions",
+          "name": "Captured Functions"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "radiator-errors",
+        "contents": "No errors captured yet.\n\nRun your instrumented application and trigger an error to see it here.\n\n[Refresh](command:radiator.refreshErrors)"
+      },
+      {
+        "view": "radiator-functions",
+        "contents": "No function snapshots found.\n\nRun your instrumented application to capture runtime types.\n\n[Refresh](command:radiator.refreshSnapshots)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "radiator.refreshErrors",
+          "when": "view == radiator-errors",
+          "group": "navigation"
+        },
+        {
+          "command": "radiator.refreshSnapshots",
+          "when": "view == radiator-functions",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "build": "node esbuild.mjs",
+    "watch": "node esbuild.mjs --watch",
+    "typecheck": "tsc --noEmit",
+    "package": "vsce package --no-dependencies"
+  },
+  "dependencies": {
+    "@radiator/common": "workspace:*",
+    "@babel/parser": "^7.24.0"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.4.0",
+    "esbuild": "^0.20.0"
+  }
+}
